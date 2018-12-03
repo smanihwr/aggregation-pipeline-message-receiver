@@ -1,0 +1,24 @@
+spring:
+  rabbitmq:
+    host: docker.me
+    username: guest
+    password: guest
+    port: 5672
+  cloud:
+    stream:
+      default:
+        contentType: application/json
+      bindings:
+        input:
+          destination: Q1
+          group: q1ReceiverGroup
+          consumer:
+            partitioned: true
+      instance-count: 3
+#      instance-index: 0
+server:
+  port: 8081
+
+logging:
+  level:
+    com.example: debug
